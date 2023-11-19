@@ -1,0 +1,215 @@
+
+body {
+    background-color: darkslategray;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: goldenrod;
+}
+    
+
+.title {
+    position: relative;
+    z-index: 10;
+}
+
+.title h1 {
+    font-size: 100px;
+    font-weight: 400;
+    -webkit-text-stroke: 3px;
+    margin: 0;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+}
+.at {
+    font-size: 20px;
+    position: absolute;
+    top: 5%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.bgtext {
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    z-index: 11;
+
+    transform: translate(-50%, 0%);
+}
+
+.bgtext span {
+    display: inline-block;
+    z-index: 1;
+    font-size: 100px;
+    font-weight: 700;
+    top: 100%;
+    -webkit-text-stroke: 3px rgba(255, 255, 255, 0.7);
+    -webkit-text-fill-color: transparent;
+    transform: translateY(-300px);
+    transition: transform 2s;
+    animation: floatAnimation 2s ease-in-out infinite alternate;
+}
+@keyframes floatAnimation {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-20px);
+    }
+}
+
+.story {
+    position: center;
+}
+    
+.grizzy {
+    top: 0px;
+    right: 5px;
+    height: 300px;
+    position: fixed;
+
+}
+.cabin {
+    position:fixed;
+    bottom: 5px;
+    right: 5px;
+}
+
+.bears {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    height: 200px;
+}
+#intro1 {
+    font-size: x-large;
+    font-family:fantasy;
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    z-index: 10;
+    
+}
+#intro2 {
+    font-size: x-large;
+    font-family:fantasy;
+    position: absolute;
+    left: 5%;
+    top: 30%;
+    z-index: 10;
+}
+.toohot img{
+width: 300px;
+}
+
+#intro3 {
+    font-size: x-large;
+    font-family:fantasy;
+    position: absolute;
+    left: 5%;
+    top: 30%;
+    z-index: 10;
+}
+.toocold img{
+    width: 400px;
+}
+#intro4 {
+    font-size: x-large;
+    font-family:fantasy;
+    position: absolute;
+    left: 5%;
+    top: 30%;
+    z-index: 10;
+}
+.justright img{
+    width: 400px;
+}
+#middle1 {
+    font-size: x-large;
+    font-family:fantasy;
+    position: absolute;
+    left: 5%;
+    top: 30%;
+    z-index: 10;
+}
+#middle2 {
+    font-size: x-large;
+    font-family:fantasy;
+    position: absolute;
+    left: 5%;
+    top: 30%;
+    z-index: 10;  
+}
+.toohard img {
+    width: 100px;
+}
+#middle3 {
+    font-size: x-large;
+    font-family:fantasy;
+    position: absolute;
+    left: 5%;
+    top: 30%;
+    z-index: 10;  
+}
+.toosoft img{
+width: 200px;
+}
+#middle4 {
+    font-size: x-large;
+    font-family:fantasy;
+    position: absolute;
+    left: 5%;
+    top: 30%;
+    z-index: 10; 
+}
+.justright2 img{
+    width: 300px;
+}
+#outro1 {
+    font-size: x-large;
+    font-family:fantasy;
+    position: absolute;
+    font-weight: 200;
+    left: 5%;
+    top: 30%;
+    z-index: 10;
+}
+#outro2 {
+    font-size: x-large;
+    font-family:fantasy;
+    position: absolute;
+    font-weight: 200;
+    left: 5%;
+    top: 30%;
+    z-index: 10;
+}
+.toohard2 img{
+    width: 300px;
+}
+#outro3 {
+    font-size: x-large;
+    font-family:fantasy;
+    position: absolute;
+    font-weight: 200;
+    left: 5%;
+    top: 30%;
+    z-index: 10;
+}
+.toosoft2 img{
+    width: 300px;
+}
+#outro4 {
+    font-size: x-large;
+    font-family:fantasy;
+    position: absolute;
+    font-weight: 200;
+    left: 5%;
+    top: 30%;
+    z-index: 10;
+}
+.justright3 img{
+    width: 300px;
+}
