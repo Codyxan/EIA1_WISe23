@@ -1,0 +1,29 @@
+html, body {
+    font-size: auto;
+    height: 100%;
+    margin: 0;
+  }
+  
+  .container {
+    display: grid;
+    grid-template-columns: repeat(9fr);
+    grid-template-rows: repeat(9fr);
+
+  }  
+  #item1 {
+    grid-template-columns: 1/9;
+    grid-template-rows: 1 / 6;
+    background-color: lightgray;
+  }
+  
+  #item2 {
+    background-color: purple;
+    grid-template-rows: 6/9;
+    grid-template-columns: 1 /6;
+  }
+  
+  #item3 {
+    grid-template-columns: 6/9;
+    grid-template-rows: 6/9;
+    background-color: lightyellow;
+  }
