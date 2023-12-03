@@ -1,0 +1,11 @@
+body {
+    background-color: #060f1d;
+    color: aliceblue;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    height: 100vh;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    filter: drop-shadow(0 0 10px white);
+  }
