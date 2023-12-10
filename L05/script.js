@@ -1,19 +1,33 @@
-let StoryStart = prompt(
-    "Dein Auto ist zugeschneit und du kommst nicht rechtzeitig zur Uni.......auf einer Rechten Schulter sitzt ein Teufel der sagt dir geh nach hause und scheiß auf die Uni und ein Engel auf deiner Linken Schulter jetzt musst du entscheiden schreib rechts oder links"
-)
+let storyArray = [ "Last night your car got snowed in and you're late to class. Do you listen to the devil on your left sholder and go home or to the little angel on your right shoulder and shovel out your car? LEFT OR RIGHT? DEVIL OR ANGEL? DECIDE NOW!",
+  "Great! you decided to go home ;) but now will your conscience let you go back and just do nothing so you sit at your desk and do school work || click ok to continue ||",
+  "Nerd! So you decided to try to free your car good for you but now you wasted your time ... so now you will walk to school || click ok to continue||",
+  "Sike you thought we were going to be productive we are going back to bed"
+]
+let start = prompt (storyArray [0])
 
-if (StoryStart == "rechts" || StoryStart == "Rechts"|| StoryStart == "r") {
-   let  = prompt(" Du drehst um und gehst nach Hause bist du PRODUKTIV und machst den Stoff daheim oder gehst du ins BETT ")
+if (start == "left" || start == "l" || start == "devil"){
+  console.log (storyArray[1]) ;
+  let nextDecision = prompt (storyArray [1]);
+    let ending = prompt (storyArray [3]);
 }
-
-else if (StoryStart == "links"|| StoryStart == "Links"|| StoryStart == "l") {
-    prompt(" Du versuchst dein Auto freizuschaufeln jedoch ist es zuviel Schnee dein Auto steckt immernoch fest und du bist verschwitzt und gehst du nach Hause  ")
+else if (start == "right"|| start == "r" || start == "angel") {
+    console.log (storyArray[2]) ;
+    let rDecision = prompt (storyArray [2]);
+     let ending = prompt (storyArray[3]);
 }
+// des muss man nicht bewerten des war zum großteil chatgpt ich wollte des nur drin haben 
+document.addEventListener('DOMContentLoaded', function () {
+    const numberOfSnowflakes = 50;
 
-else {
-     StoryStart= prompt ('schreib rechts oder links')
-}
+    for (let i = 0; i < numberOfSnowflakes; i++) {
+        createSnowflake();
+    }
 
-let StoryR = prompt ( 
-    "Du legst dich wieder in dein Bett egal ob du produktiv sein wolltest und pennst den ganzen tag"
-)
+    function createSnowflake() {
+        const snowflake = document.createElement('div');
+        snowflake.className = 'snowflake';
+        snowflake.style.left = `${Math.random() * 100}vw`;
+        snowflake.style.animationDuration = `${Math.random() * 5 + 4}s`;
+        document.body.appendChild(snowflake);
+    }
+});
