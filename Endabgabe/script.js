@@ -33,7 +33,10 @@ function generateRandomChord() {
     selectedAnswer = null;
 }
 
+
+
 function playChord(chord, callback) {
+
     const source = audioContext.createBufferSource();
     source.connect(audioContext.destination);
     source.buffer = chordSounds[chord];
