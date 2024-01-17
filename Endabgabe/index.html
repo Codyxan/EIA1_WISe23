@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Chord Guessing Game</title>
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <img class="gimg" src="Guitarpicst.jpg" alt="Codyguitar">
+    
+    <div id="gameIntro">
+        <h1>Chord Guessing Game</h1>
+        <button id="startButton" onclick="startGame()">Start</button>
+    </div>
+
+    <div id="gamePlay" style="display: none;">
+        <h2>Guess the Chord GOOD LUCK</h2>
+
+        <div id="options">
+            <audio id="chordAudio" src="AllMusicNotes/"></audio>
+            <button class="chordOption" id="option1" onclick="selectAnswer('option1')"></button>
+            <button class="chordOption" id="option2" onclick="selectAnswer('option2')"></button>
+            <button class="chordOption" id="option3" onclick="selectAnswer('option3')"></button>
+        </div>
+        
+        <button id="playChordButton" onclick="playChord()">Play Chord</button>
+        <button id="submitGuessButton" onclick="submitGuess()">Submit Guess</button>
+    </div>
+
+    <div id="gameEnd" style="display: none;">
+        <h2 id="resultMessage"></h2>
+        <button id="restartButton" onclick="restartGame()">Restart Game</button>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,35 @@
+body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(to bottom, #000, #565555);
+    color: white;
+}
+.gimg { 
+    height: 200px;
+}
+
+button {
+    color: rgb(212, 189, 104);
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #565555;
+}
+
+#gameIntro, #gamePlay, #gameEnd {
+    text-align: center;
+}
+
+.chordOption {
+    font-size: 24px;
+    width: 150px;
+    height: 50px;
+    margin: 10px;
+    cursor: pointer;
+}

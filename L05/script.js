@@ -17,7 +17,7 @@ else if (start == "right"|| start == "r" || start == "angel") {
 }
 // des muss man nicht bewerten des war zum großteil chatgpt ich wollte des nur drin haben 
 document.addEventListener('DOMContentLoaded', function () {
-    const numberOfSnowflakes = 50;
+    const numberOfSnowflakes = 100;
 
     for (let i = 0; i < numberOfSnowflakes; i++) {
         createSnowflake();
