@@ -1,153 +1,145 @@
-const chordArray = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
+// Definition der Akkorde und variablen
+const chordsArray = ["C", "D", "E", "F", "G", "A", "B"];
 const chordSounds = {};
 let currentChord;
 let selectedAnswer;
-let optionsContainer;
-let submitButton;
+let audioContext;
 
+// Initialisiert den Audio-Kontext
 function initializeAudioContext() {
     audioContext = new (window.AudioContext || window.webkitAudioContext)();
 }
-document.getElementById('startButton').addEventListener('click', function() {
-    document.getElementById('gameIntro').style.display = 'none';
-    document.getElementById('gamePlay').style.display = 'block';
-    initializeGame();
-});
 
-
-function loadChordSounds() {
+// Lädt die Klangsdateien der Akkorde
+async function loadChordSounds() {
     const loadChord = async (chord) => {
         const response = await fetch(`AllMusicNotes/${chord}.mp3`);
         const buffer = await response.arrayBuffer();
         chordSounds[chord] = await audioContext.decodeAudioData(buffer);
     };
 
-    return Promise.all(chordArray.map(loadChord));
+    return Promise.all(chordsArray.map(loadChord));
 }
 
-function generateRandomChord() {
-    const randomIndex = Math.floor(Math.random() * chordArray.length);
-    currentChord = chordArray[randomIndex];
-    playChord(currentChord);
-    displayOptions(currentChord);
-    selectedAnswer = null;
-}
-
-
-
-function playChord(chord, callback) {
-
+// Spielt einen Akkord ab
+function playChord(chord) {
     const source = audioContext.createBufferSource();
-    source.connect(audioContext.destination);
     source.buffer = chordSounds[chord];
-    source.start(audioContext.currentTime);
-    
-    
-    if (callback) {
-        source.onended = callback;
-    }
-}
-function displayOptions(currentChord) {
-    optionsContainer.innerHTML = '';
-
-    const incorrectOptions = chordArray.filter(chord => chord !== currentChord);
-    const randomIncorrectOptions = getNRandomItemsFromArray(incorrectOptions, 2);
-    const shuffledOptions = [currentChord, ...randomIncorrectOptions].sort(() => Math.random() - 0.3);
-
-    shuffledOptions.forEach(option => {
-        const button = document.createElement('button');
-        button.classList.add('option');
-        button.innerText = option;
-        button.onclick = () => {
-            if (!selectedAnswer) {
-                selectedAnswer = option;
-                playChord(option); 
-                disableOptionButtons();
-                submitButton.disabled = false;
-            }
-        };
-        optionsContainer.appendChild(button);
-    });
-
-    
-    playChord(currentChord);
+    source.connect(audioContext.destination);
+    source.start(0);
 }
 
-
-function disableOptionButtons() {
-    const buttons = optionsContainer.querySelectorAll('.option');
-    buttons.forEach(button => (button.disabled = true));
-}
-
-function enableOptionButtons() {
-    const buttons = optionsContainer.querySelectorAll('.option');
-    buttons.forEach(button => (button.disabled = false));
-}
-function submitAnswer() {
-    if (selectedAnswer !== null) {
-        playChord(selectedAnswer, () => {
-            checkAnswer(selectedAnswer, currentChord);
-            enableOptionButtons();
-            submitButton.disabled = true;
-            setTimeout(generateRandomChord, 1000);
-        });
-    } else {
-        document.getElementById('result').innerText = 'Please select an answer before submitting.';
-    }
-}
-
-
-function checkAnswer(userGuess, currentChord) {
-    const resultElement = document.getElementById('result');
-    if (userGuess === currentChord) {
-        resultElement.innerText = 'Correct!';
-    } else {
-        resultElement.innerText = 'Incorrect! Try again';
-    }
-}
-
-function getNRandomItemsFromArray(array, n) {
-    const shuffledArray = array.sort(() => Math.random() - 0.5);
-    return shuffledArray.slice(0, n);
-}
-
-
-async function initializeGame() {
+// Startet das Spiel
+function startGame() {
     initializeAudioContext();
-    await loadChordSounds();
-
-
-    optionsContainer = document.getElementById('options');
-
-    submitButton = document.getElementById('submitGuessButton');
-    generateRandomChord();
-}
-
-initializeGame();
-
-
-function displayOptions(currentChord) {
-    optionsContainer.innerHTML = '';
-
-    const incorrectOptions = chordArray.filter(chord => chord !== currentChord);
-    const randomIncorrectOptions = getNRandomItemsFromArray(incorrectOptions, 2);
-    const shuffledOptions = [currentChord, ...randomIncorrectOptions].sort(() => Math.random() - 0.3);
-
-    shuffledOptions.forEach(option => {
-        const button = document.createElement('button');
-        button.classList.add('option');
-        button.innerText = option;
-        button.onclick = () => {
-            if (!selectedAnswer) {
-                selectedAnswer = option;
-                playChord(option); 
-                disableOptionButtons();
-                submitButton.disabled = false;
-            }
-        };
-        optionsContainer.appendChild(button);
+    loadChordSounds().then(() => {
+        generateRandomChord();
+        enableChordButtons(true);
+        document.getElementById("startButton").disabled = true;
     });
-
-    
-    playChord(currentChord);
 }
+
+// Generiert einen zufaelligen Akkord und setzt die auswahl zurueck 
+function generateRandomChord() {
+    const randomIndex = Math.floor(Math.random() * chordsArray.length);
+    currentChord = chordsArray[randomIndex];
+    playChord(currentChord);
+    displayChordButtons();
+    selectedAnswer = null;
+    document.getElementById("result").innerText = "";
+}
+
+// Erneuert die Anzeige der Akkord-Buttons
+function displayChordButtons() {
+    const chordContainer = document.getElementById("chordContainer");
+    chordContainer.innerHTML = '';
+
+    for (const chord of chordsArray) {
+        const button = document.createElement("button");
+        button.textContent = chord;
+        button.onclick = () => {
+            selectChord(chord);
+            playChord(chord); // spielt nur ab wenn man den button dueckt 
+            updateButtonColors(button); // Aktualisiert die Farben der Buttons bei der Akkordauswahl
+        };
+        chordContainer.appendChild(button);
+    }
+
+    const replayButton = document.createElement("button");
+    replayButton.textContent = "Chord to Guess";
+    replayButton.onclick = () => playChord(currentChord);
+    chordContainer.appendChild(replayButton);
+}
+// Waehlt einen Akkord aus
+function selectChord(chord) {
+    selectedAnswer = chord;
+}
+
+// Aktiviert oder deaktiviert die Akkord-Buttons
+function enableChordButtons(enable) {
+    const buttons = document.querySelectorAll("#chordContainer button");
+    buttons.forEach(button => (button.disabled = !enable));
+}
+
+// Aktualisier die Farben der Akkord-Buttons wenn ausgewaehlt 
+function updateButtonColors(selectedButton) {
+    const buttons = document.querySelectorAll("#chordContainer button");
+    buttons.forEach(button => {
+        const isChordSelected = selectedAnswer === button.textContent;
+        button.style.backgroundColor = isChordSelected ? "lightblue" : "";
+    });
+}
+
+// Ueberprüft die Antwort und die End Nachricht aus
+function checkAnswer() {
+    const resultElement = document.getElementById("result");
+    if (selectedAnswer === currentChord) {
+        resultElement.innerText = "Correct!";
+    } else {
+        resultElement.innerText = "Incorrect! Try again";
+    }
+
+    enableChordButtons(false);
+    document.getElementById("startButton").disabled = false;
+
+    setTimeout(() => {
+        generateRandomChord();
+        resultElement.innerText = ""; // setzt den innerText zurueck
+    }, 1000);
+}
+
+// Initialisierung
+document.getElementById("startButton").addEventListener("click", function () {
+    initializeAudioContext();
+    loadChordSounds().then(() => {
+        generateRandomChord();
+        enableChordButtons(true);
+        document.getElementById("startButton").disabled = true;
+    });
+});
+
+// Event listener zur Enter taste zur auswahl bestaetigugng 
+document.addEventListener("keydown", function (event) {
+    console.log ("enter pressed key")
+    if (event.key === "Enter") {
+        checkAnswer();
+    }
+});
+
+// Startet das Spiel beim Laden der Seite
+document.addEventListener("DOMContentLoaded", function () {
+    loadChordSounds().then(() => {
+        gameLoop();
+    });
+});
+
+function handleLoaded() {
+
+}
+function handleTouch12 (){
+    var startButton = document.getElementById("startButton");
+var clickEvent = new Event("click");
+
+startButton.dispatchEvent(clickEvent);
+}
+

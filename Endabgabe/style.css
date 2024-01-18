@@ -1,5 +1,5 @@
 body {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: Georgia, Times, 'Times New Roman', serif;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,23 +13,26 @@ body {
     height: 200px;
 }
 
+#chordContainer {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
 button {
-    color: rgb(212, 189, 104);
     font-size: 16px;
-    padding: 10px 20px;
+    padding: 10px;
+    margin: 5px;
     cursor: pointer;
-    border-radius: 10px;
-    background-color: #565555;
 }
 
-#gameIntro, #gamePlay, #gameEnd {
-    text-align: center;
+#submitBtn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
 }
 
-.chordOption {
-    font-size: 24px;
-    width: 150px;
-    height: 50px;
-    margin: 10px;
+#submitBtn:disabled {
+    background-color: #ccc;
     cursor: pointer;
 }

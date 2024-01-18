@@ -4,36 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script defer src="./eia1_voyager_sdk.min.js"></script>
+    <script defer src="./script.js"></script>
     <title>Chord Guessing Game</title>
-    <script defer src="beides?"></script>
-    <script defer src="script.js"></script>
 </head>
 <body>
-    <img class="gimg" src="Guitarpicst.jpg" alt="Codyguitar">
-    
-    <div id="gameIntro">
-        <h1>Chord Guessing Game</h1>
-        <button id="startButton" onclick="startGame()">Start</button>
-    </div>
+    <img class="gimg" src="./Bilder/Guitarpicst.jpg" alt="Codyguitar">
+    <div>
+        <button id="startButton" onclick="startGame()">Start Game</button>
 
-    <div id="gamePlay" style="display: none;">
-        <h2>Guess the Chord GOOD LUCK</h2>
-
-        <div id="options">
-            <audio id="chordAudio" src="AllMusicNotes/"></audio>
-            <button class="chordOption" id="option1" onclick="selectAnswer('option1')"></button>
-            <button class="chordOption" id="option2" onclick="selectAnswer('option2')"></button>
-            <button class="chordOption" id="option3" onclick="selectAnswer('option3')"></button>
+        <div id="chordContainer">
+            <audio id="audioPlayer" src="" preload=""></audio>
         </div>
-        
-        <button id="playChordButton" onclick="playChord()">Play Chord</button>
-        <button id="submitGuessButton" onclick="submitGuess()">Submit Guess</button>
+
+        <div id="result"></div>
+
     </div>
 
-    <div id="gameEnd" style="display: none;">
-        <h2 id="resultMessage"></h2>
-        <button id="restartButton" onclick="restartGame()">Restart Game</button>
-    </div>
 </body>
 </html>
-
